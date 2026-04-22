@@ -39,7 +39,7 @@
     "test": "src/antelope.test.ts"
   },
   "dependencies": {
-    "@antelopejs/interface-api": "^0.0.2",
+    "@antelopejs/interface-api": "^0.0.3",
     "@antelopejs/interface-core": "^0.0.3"
   },
   "devDependencies": {
