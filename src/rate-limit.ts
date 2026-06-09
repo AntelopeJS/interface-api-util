@@ -39,9 +39,11 @@ export interface RateLimitOptions {
    * Derive the rate-limit key from the request context. When omitted, or when
    * it returns a falsy value, the client IP
    * (`context.rawRequest.socket.remoteAddress`) is used. Provide a custom
-   * function to key by user id, API key, or a forwarded header.
+   * function to key by user id, API key, or a forwarded header. The return
+   * type allows `null`/`undefined` so optional sources (a missing route
+   * parameter or header) can be returned directly without a cast.
    */
-  key?: (context: RequestContext) => string;
+  key?: (context: RequestContext) => string | null | undefined;
 
   /**
    * Body sent with the `429` response. Defaults to `"Too many requests"`.

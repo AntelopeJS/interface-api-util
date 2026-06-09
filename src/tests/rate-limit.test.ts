@@ -134,9 +134,7 @@ describe("RateLimit", () => {
     });
 
     it("falls back to the client IP when the custom key is falsy", () => {
-      const options: RateLimitOptions = {
-        key: () => undefined as unknown as string,
-      };
+      const options: RateLimitOptions = { key: () => undefined };
       nodeAssert.equal(resolveKey(makeContext("1.2.3.4"), options), "1.2.3.4");
     });
   });
