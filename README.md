@@ -24,5 +24,3 @@ Detailed documentation is available in the `docs` directory:
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
-
-claude --resume c25fd9d7-bf14-442a-8bf4-9f0a407ba439
