@@ -1,5 +1,7 @@
 import { HTTPResult } from "@antelopejs/interface-api";
 
+export * from "./rate-limit";
+
 /**
  * Assert a condition is truthy, throwing an HTTPResult error if false.
  *
