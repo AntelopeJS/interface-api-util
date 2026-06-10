@@ -7,7 +7,7 @@
 <a href="./docs/1.introduction.md"><img src="https://img.shields.io/badge/Docs-18181B?style=for-the-badge&color=000000" alt="Documentation"></a>
 </div>
 
-Utility functions for API request validation and error handling in AntelopeJS. This package provides `assert` and `assertValidation` helpers that throw structured HTTP error responses when conditions fail or input validation does not pass.
+Utility helpers for API request validation, rate limiting, and error handling in AntelopeJS. This package provides the `assert` and `assertValidation` helpers that throw structured HTTP error responses when conditions fail or input validation does not pass, plus the `@RateLimit` decorator that caps how often a handler can be called.
 
 ## Installation
 
