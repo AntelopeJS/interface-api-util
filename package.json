@@ -1,6 +1,6 @@
 {
   "name": "@antelopejs/interface-api-util",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "AntelopeJS utility functions for API request validation and error handling",
   "keywords": [
     "antelopejs",
