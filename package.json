@@ -39,8 +39,8 @@
     "test": "src/antelope.test.ts"
   },
   "devDependencies": {
-    "@antelopejs/interface-api": ">=0.0.3 <1.0.0",
-    "@antelopejs/interface-core": ">=0.0.3 <1.0.0",
+    "@antelopejs/interface-api": "^0.0.5",
+    "@antelopejs/interface-core": "^0.0.5",
     "@biomejs/biome": "2.3.2",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.19.15",
