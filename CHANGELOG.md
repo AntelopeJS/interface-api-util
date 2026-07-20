@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.1.2
+
+[compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.1.1...v0.1.2)
+
+### 🚀 Enhancements
+
+- **skills:** Ship a consumer skill with the package ([#4](https://github.com/AntelopeJS/interface-api-util/pull/4))
+
+### ❤️ Contributors
+
+- Antony Rizzitelli <upd4ting@gmail.com>
+
 ## v0.1.1
 
 [compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.1.0...v0.1.1)
