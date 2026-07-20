@@ -31,21 +31,21 @@ import { Controller, Get, Post, HTTPResult, Parameter, RawBody } from "@antelope
 import { assert, assertValidation, RateLimit } from "@antelopejs/interface-api-util";
 import * as z from "zod";
 
-const createUserSchema = z.object({ name: z.string().min(1), email: z.string().email() });
+const createMemberSchema = z.object({ fullName: z.string().min(1), email: z.string().email() });
 
-class UsersController extends Controller("users") {
+class MembersController extends Controller("members") {
   @Get(":id")
   @RateLimit(100, 60_000)
   async get(@Parameter("id") id: string) {
-    const user = await findUser(id);
-    assert(user, 404, "User not found"); // narrows `user` to non-falsy below
-    return new HTTPResult(200, user);
+    const member = await findMember(id);
+    assert(member, 404, "Member not found"); // narrows `member` to non-falsy below
+    return new HTTPResult(200, member);
   }
 
   @Post()
   async create(@RawBody() body: Buffer) {
-    const { name, email } = assertValidation(body, (b) => createUserSchema.parse(JSON.parse((b as Buffer).toString())));
-    return new HTTPResult(201, await saveUser({ name, email }));
+    const { fullName, email } = assertValidation(body, (b) => createMemberSchema.parse(JSON.parse((b as Buffer).toString())));
+    return new HTTPResult(201, await saveMember({ fullName, email }));
   }
 }
 ```
