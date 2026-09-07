@@ -30,12 +30,14 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc",
-    "format": "biome format --write .",
-    "lint:fix": "biome check --write .",
-    "lint": "biome check .",
+    "format": "oxfmt .",
+    "lint:fix": "oxlint --fix",
+    "lint": "oxlint",
     "prepack": "pnpm run build",
     "release": "pnpm run lint && pnpm run prepack && release-it",
-    "test": "pnpm run build && ajs module test ."
+    "test": "pnpm run build && ajs module test .",
+    "format:check": "oxfmt --check .",
+    "knip": "knip"
   },
   "antelopeJs": {
     "test": "src/antelope.test.ts",
@@ -46,9 +48,14 @@
   "devDependencies": {
     "@antelopejs/interface-api": "^0.0.5",
     "@antelopejs/interface-core": "^0.0.5",
-    "@biomejs/biome": "2.3.2",
+    "@antelopejs/tooling-configs": "^0.0.4",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.19.15",
+    "eslint-plugin-perfectionist": "^5.11.0",
+    "knip": "^6.34.0",
+    "oxfmt": "^0.66.0",
+    "oxlint": "1.81.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "release-it": "^19.2.4",
     "release-it-changelogen": "^0.1.0",
     "rimraf": "^6.1.3",

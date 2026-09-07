@@ -1,4 +1,5 @@
 import nodeAssert from "node:assert";
+import { GetMetadata } from "@antelopejs/interface-core";
 import {
   Controller,
   type ControllerClass,
@@ -8,7 +9,7 @@ import {
   type RequestContext,
   SetParameterProvider,
 } from "@antelopejs/interface-api";
-import { GetMetadata } from "@antelopejs/interface-core";
+
 import {
   hitWindow,
   pruneExpired,
