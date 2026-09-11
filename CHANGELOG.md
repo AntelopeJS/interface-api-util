@@ -1,6 +1,5 @@
 # Changelog
 
-
 ## v0.1.2
 
 [compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.1.1...v0.1.2)
@@ -67,7 +66,6 @@
 
 ## v0.0.2
 
-
 ### 🏡 Chore
 
 - Initial commit ([ee1b417](https://github.com/AntelopeJS/interface-api-util/commit/ee1b417))
@@ -75,4 +73,3 @@
 ### ❤️ Contributors
 
 - Antony Rizzitelli <upd4ting@gmail.com>
-

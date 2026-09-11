@@ -18,7 +18,12 @@ as thrown `HTTPResult` values, which the API interface converts into HTTP respon
 The package has a single export subpath (root only):
 
 ```ts
-import { assert, assertValidation, RateLimit, type RateLimitOptions } from "@antelopejs/interface-api-util";
+import {
+  assert,
+  assertValidation,
+  RateLimit,
+  type RateLimitOptions,
+} from "@antelopejs/interface-api-util";
 ```
 
 `hitWindow`, `pruneExpired`, and `resolveKey` are also exported but marked `@internal` (rate-limit
@@ -27,11 +32,25 @@ plumbing, exposed for tests) — do not reach for them in application code.
 ## Usage
 
 ```ts
-import { Controller, Get, Post, HTTPResult, Parameter, RawBody } from "@antelopejs/interface-api";
-import { assert, assertValidation, RateLimit } from "@antelopejs/interface-api-util";
+import {
+  Controller,
+  Get,
+  Post,
+  HTTPResult,
+  Parameter,
+  RawBody,
+} from "@antelopejs/interface-api";
+import {
+  assert,
+  assertValidation,
+  RateLimit,
+} from "@antelopejs/interface-api-util";
 import * as z from "zod";
 
-const createMemberSchema = z.object({ fullName: z.string().min(1), email: z.string().email() });
+const createMemberSchema = z.object({
+  fullName: z.string().min(1),
+  email: z.string().email(),
+});
 
 class MembersController extends Controller("members") {
   @Get(":id")
@@ -44,7 +63,9 @@ class MembersController extends Controller("members") {
 
   @Post()
   async create(@RawBody() body: Buffer) {
-    const { fullName, email } = assertValidation(body, (b) => createMemberSchema.parse(JSON.parse((b as Buffer).toString())));
+    const { fullName, email } = assertValidation(body, (b) =>
+      createMemberSchema.parse(JSON.parse((b as Buffer).toString())),
+    );
     return new HTTPResult(201, await saveMember({ fullName, email }));
   }
 }

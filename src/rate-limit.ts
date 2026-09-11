@@ -1,3 +1,5 @@
+import { GetMetadata } from "@antelopejs/interface-core";
+import { MakeMethodDecorator } from "@antelopejs/interface-core/decorators";
 import {
   ControllerMeta,
   getRegisteredRoutes,
@@ -5,8 +7,6 @@ import {
   type RequestContext,
   SetParameterProvider,
 } from "@antelopejs/interface-api";
-import { GetMetadata } from "@antelopejs/interface-core";
-import { MakeMethodDecorator } from "@antelopejs/interface-core/decorators";
 
 const TOO_MANY_REQUESTS = 429;
 const DEFAULT_MESSAGE = "Too many requests";
