@@ -35,8 +35,9 @@ export function assert<T>(
 }
 
 /**
- * Executes the given validator function on a body, throwing an HTTPResult error if it fails.
+ * Executes a synchronous validator on a body, converting thrown errors to HTTPResult.
  * The validator should return a validated object on success and throw on failure.
+ * Promises are returned unchanged; asynchronous rejections are not converted.
  *
  * The error thrown by the validator may be altered by passing an error handler.
  * The result of this error handler will be passed directly as the body of the HTTPResult.

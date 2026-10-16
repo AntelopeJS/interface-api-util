@@ -12,7 +12,7 @@ Request validation and rate limiting helpers for handlers written against [`@ant
 ## What it offers
 
 - `assert(condition, code, message)` throws an `HTTPResult` when the condition is falsy and narrows its type when it holds.
-- `assertValidation(body, validator)` runs any validator, such as a Zod `parse`, and turns its error into a `400` response.
+- `assertValidation(body, validator)` runs a synchronous validator, such as a Zod `parse`, and turns a thrown error into a `400` response.
 - `@RateLimit(limit, windowMs)` caps calls to a handler per client in a fixed window and answers `429` beyond it.
 
 ## Implementations
@@ -65,15 +65,18 @@ Place `@RateLimit` directly below the route decorator. Placed above it, `@RateLi
 
 ## Documentation
 
-- [Introduction](https://interfaces.antelopejs.com/docs/api-util/introduction)
+- [Assertions, validation and rate limiting](./docs/1.introduction.md)
 
 ## Compatibility
 
-| Package                             | Range             |
-| ----------------------------------- | ----------------- |
-| `@antelopejs/interface-api` (peer)  | `>=0.0.13 <1.0.0` |
-| `@antelopejs/interface-core` (peer) | `>=0.1.1 <1.0.0`  |
-| `@antelopejs/core`                  | `1.x`             |
+Use with `@antelopejs/core` 1.x and the following peer dependencies:
+
+<!-- docs-compat: ./package.json#peerDependencies -->
+
+| Package                      | Range             |
+| ---------------------------- | ----------------- |
+| `@antelopejs/interface-api`  | `>=0.0.13 <1.0.0` |
+| `@antelopejs/interface-core` | `>=0.1.1 <1.0.0`  |
 
 ## Contributing
 
