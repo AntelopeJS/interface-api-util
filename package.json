@@ -1,13 +1,18 @@
 {
   "name": "@antelopejs/interface-api-util",
   "version": "0.1.2",
-  "description": "AntelopeJS utility functions for API request validation and error handling",
+  "description": "AntelopeJS helpers for API handlers: request assertions, input validation and rate limiting",
   "keywords": [
     "antelopejs",
     "api",
     "interface",
+    "rate-limit",
     "validation"
   ],
+  "homepage": "https://interfaces.antelopejs.com/docs/api-util",
+  "bugs": {
+    "url": "https://github.com/AntelopeJS/interface-api-util/issues"
+  },
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
