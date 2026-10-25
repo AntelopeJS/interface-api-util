@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "antelopejs/no-comments": 5,
+    "antelopejs/require-assertion": 14,
+    "anti-slop/no-chained-type-assertions": 1,
+    "anti-slop/no-runtime-typeof": 3,
+    "anti-slop/no-unknown-parameters": 6,
+    "anti-slop/no-unknown-returns": 3,
+    "anti-slop/no-unsafe-dictionary-type": 1,
+    "anti-slop/require-safety-comment-for-type-assertion": 5,
+    "eslint/max-lines-per-function": 1,
+    "eslint/max-params": 1,
+    "typescript/unbound-method": 2
+  },
+  "oversizeFiles": {}
+}
