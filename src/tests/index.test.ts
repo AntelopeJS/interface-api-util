@@ -1,4 +1,4 @@
-import nodeAssert from "node:assert";
+import assert from "node:assert";
 import { HTTPResult } from "@antelopejs/interface-api";
 import {
   assert as assertCondition,
@@ -61,7 +61,7 @@ function mapValidationError(): ValidationErrorPayload {
 describe("API Util Interface", () => {
   describe("assert", () => {
     it("returns when the condition is truthy", () => {
-      nodeAssert.doesNotThrow(() =>
+      assert.doesNotThrow(() =>
         assertCondition(true, BAD_REQUEST_CODE, ASSERTION_ERROR_MESSAGE),
       );
     });
@@ -76,8 +76,8 @@ describe("API Util Interface", () => {
       }
 
       const httpError = toHTTPResult(thrownError);
-      nodeAssert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
-      nodeAssert.equal(httpError.getBody(), ASSERTION_ERROR_MESSAGE);
+      assert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
+      assert.equal(httpError.getBody(), ASSERTION_ERROR_MESSAGE);
     });
   });
 
@@ -91,8 +91,8 @@ describe("API Util Interface", () => {
         parsePayload,
       );
 
-      nodeAssert.equal(payload.name, "antelope");
-      nodeAssert.equal(payload.active, true);
+      assert.equal(payload.name, "antelope");
+      assert.equal(payload.active, true);
     });
 
     it("throws HTTPResult with default code and serialized error message", () => {
@@ -105,11 +105,8 @@ describe("API Util Interface", () => {
       }
 
       const httpError = toHTTPResult(thrownError);
-      nodeAssert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
-      nodeAssert.equal(
-        httpError.getBody(),
-        `Error: ${VALIDATION_ERROR_MESSAGE}`,
-      );
+      assert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
+      assert.equal(httpError.getBody(), `Error: ${VALIDATION_ERROR_MESSAGE}`);
     });
 
     it("applies custom error mapper and status code", () => {
@@ -127,11 +124,8 @@ describe("API Util Interface", () => {
       }
 
       const httpError = toHTTPResult(thrownError);
-      nodeAssert.equal(httpError.getStatus(), UNPROCESSABLE_ENTITY_CODE);
-      nodeAssert.equal(
-        httpError.getBody(),
-        JSON.stringify(mapValidationError()),
-      );
+      assert.equal(httpError.getStatus(), UNPROCESSABLE_ENTITY_CODE);
+      assert.equal(httpError.getBody(), JSON.stringify(mapValidationError()));
     });
   });
 });
