@@ -1,8 +1,5 @@
 import assert from "node:assert";
-import {
-  assert as assertCondition,
-  assertValidation,
-} from "@antelopejs/interface-api-util";
+import { assert as assertCondition, assertValidation } from "..";
 import { captureHTTPResult } from "./capture-http-result";
 
 class RawPayload {
@@ -68,11 +65,10 @@ describe("API Util Interface", () => {
 
   describe("assertValidation", () => {
     it("returns parsed payload when validation succeeds", () => {
-      const payload = assertValidation(
-        new RawPayload("antelope", true),
-        parsePayload,
-      );
+      const input = new RawPayload("antelope", true);
+      const payload = assertValidation(input, parsePayload);
 
+      assert.notEqual(payload, input);
       assert.equal(payload.name, "antelope");
       assert.equal(payload.active, true);
     });
