@@ -1,8 +1,7 @@
 {
   "rules": {
     "anti-slop/no-unknown-parameters": 3,
-    "anti-slop/no-unknown-returns": 1,
-    "eslint/max-lines-per-function": 1
+    "anti-slop/no-unknown-returns": 1
   },
   "oversizeFiles": {}
 }

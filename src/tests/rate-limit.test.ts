@@ -63,7 +63,7 @@ function guardProvider(controller: ControllerClass): ParameterProvider {
   return provider;
 }
 
-describe("RateLimit", () => {
+function describeWindows(): void {
   describe("hitWindow", () => {
     it("allows up to the limit then denies within the window", () => {
       const store = new Map();
@@ -122,7 +122,9 @@ describe("RateLimit", () => {
       assert.equal(store.has("fresh"), true);
     });
   });
+}
 
+function describeKeyResolution(): void {
   describe("resolveKey", () => {
     it("uses the custom key function when provided", () => {
       const options: RateLimitOptions = { key: () => "custom" };
@@ -142,7 +144,9 @@ describe("RateLimit", () => {
       assert.equal(resolveKey(makeContext("1.2.3.4"), options), "1.2.3.4");
     });
   });
+}
 
+function describeDecorator(): void {
   describe("decorator", () => {
     it("registers a guard provider at the trailing parameter index", () => {
       class Indexed extends Controller("rate-limit-index") {
@@ -222,4 +226,10 @@ describe("RateLimit", () => {
       );
     });
   });
+}
+
+describe("RateLimit", () => {
+  describeWindows();
+  describeKeyResolution();
+  describeDecorator();
 });
