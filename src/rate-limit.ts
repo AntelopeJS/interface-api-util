@@ -146,8 +146,10 @@ function buildLimitResult(
   return result;
 }
 
-function getControllerMeta(target: { constructor: unknown }): ControllerMeta {
-  return GetMetadata(target.constructor as never, ControllerMeta);
+function getControllerMeta(target: {
+  constructor: { location: string };
+}): ControllerMeta {
+  return GetMetadata(target.constructor, ControllerMeta);
 }
 
 function assertGuardWiringOrder(meta: ControllerMeta, key: PropertyKey): void {
@@ -215,9 +217,11 @@ export const RateLimit = MakeMethodDecorator(
     target,
     key,
     _descriptor,
-    limit: number,
-    windowMs: number,
-    options?: RateLimitOptions,
+    ...[limit, windowMs, options]: [
+      limit: number,
+      windowMs: number,
+      options?: RateLimitOptions,
+    ]
   ) => {
     const resolvedOptions = options ?? {};
     const meta = getControllerMeta(target);

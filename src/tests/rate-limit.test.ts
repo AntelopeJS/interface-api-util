@@ -1,4 +1,6 @@
 import assert from "node:assert";
+import { IncomingMessage, ServerResponse } from "node:http";
+import { Socket } from "node:net";
 import { GetMetadata } from "@antelopejs/interface-core";
 import {
   Controller,
@@ -6,6 +8,7 @@ import {
   ControllerMeta,
   Get,
   HTTPResult,
+  type ParameterProvider,
   type RequestContext,
   SetParameterProvider,
 } from "@antelopejs/interface-api";
@@ -17,6 +20,7 @@ import {
   type RateLimitOptions,
   resolveKey,
 } from "../rate-limit";
+import { captureHTTPResult } from "./capture-http-result";
 
 const TOO_MANY_REQUESTS = 429;
 const LIMIT = 2;
@@ -26,32 +30,31 @@ const RATELIMIT_LIMIT_HEADER = "X-RateLimit-Limit";
 const RATELIMIT_REMAINING_HEADER = "X-RateLimit-Remaining";
 const RATELIMIT_RESET_HEADER = "X-RateLimit-Reset";
 
-function toHTTPResult(error: unknown): HTTPResult {
-  if (!(error instanceof HTTPResult)) {
-    throw new Error("Expected an HTTPResult error");
-  }
-  return error;
-}
-
 function makeContext(remoteAddress?: string): RequestContext {
+  const socket = new Socket();
+  Object.defineProperty(socket, "remoteAddress", { value: remoteAddress });
+  const rawRequest = new IncomingMessage(socket);
   return {
-    rawRequest: { socket: { remoteAddress } },
+    rawRequest,
+    rawResponse: new ServerResponse(rawRequest),
+    url: new URL("http://localhost/"),
+    routeParameters: {},
     response: new HTTPResult(),
-  } as unknown as RequestContext;
+  };
 }
 
-function captureThrow(action: () => void): unknown {
-  try {
-    action();
-  } catch (error: unknown) {
-    return error;
+function handlerDescriptor(controller: ControllerClass): PropertyDescriptor {
+  const descriptor = Object.getOwnPropertyDescriptor(
+    controller.prototype,
+    "handler",
+  );
+  if (!descriptor) {
+    throw new Error("Expected handler to be a declared method");
   }
-  throw new Error("Expected the action to throw");
+  return descriptor;
 }
 
-function guardProvider(
-  controller: ControllerClass,
-): (context: RequestContext) => unknown {
+function guardProvider(controller: ControllerClass): ParameterProvider {
   const meta = GetMetadata(controller, ControllerMeta);
   const provider = meta.computed_params.handler[0]?.provider;
   if (!provider) {
@@ -147,9 +150,7 @@ describe("RateLimit", () => {
       }
       const proto = Indexed.prototype;
       SetParameterProvider(proto, "handler", 0, () => "existing");
-      RateLimit(LIMIT, WINDOW_MS)(proto, "handler", {
-        value: proto.handler,
-      } as PropertyDescriptor);
+      RateLimit(LIMIT, WINDOW_MS)(proto, "handler", handlerDescriptor(Indexed));
 
       const meta = GetMetadata(Indexed, ControllerMeta);
       assert.ok(meta.computed_params.handler[1]?.provider);
@@ -168,7 +169,7 @@ describe("RateLimit", () => {
       assert.equal(provider(context), undefined);
       assert.equal(provider(context), undefined);
 
-      const error = toHTTPResult(captureThrow(() => provider(context)));
+      const error = captureHTTPResult(() => provider(context));
       const headers = error.getHeaders();
       const retryAfter = Number(headers[RETRY_AFTER_HEADER]);
       assert.equal(error.getStatus(), TOO_MANY_REQUESTS);
@@ -211,7 +212,7 @@ describe("RateLimit", () => {
         handler() {}
       }
       const proto = Misordered.prototype;
-      const descriptor = { value: proto.handler } as PropertyDescriptor;
+      const descriptor = handlerDescriptor(Misordered);
 
       Get()(proto, "handler", descriptor);
 
