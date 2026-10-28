@@ -1,9 +1,13 @@
-import nodeAssert from "node:assert";
-import { HTTPResult } from "@antelopejs/interface-api";
-import {
-  assert as assertCondition,
-  assertValidation,
-} from "@antelopejs/interface-api-util";
+import assert from "node:assert";
+import { assert as assertCondition, assertValidation } from "..";
+import { captureHTTPResult } from "./capture-http-result";
+
+class RawPayload {
+  constructor(
+    readonly name: string,
+    readonly active: boolean,
+  ) {}
+}
 
 interface ValidatedPayload {
   name: string;
@@ -21,33 +25,16 @@ const ASSERTION_ERROR_MESSAGE = "Missing payload";
 const VALIDATION_ERROR_MESSAGE = "Invalid payload";
 const VALIDATION_ERROR_CODE = "VALIDATION_ERROR";
 
-function toHTTPResult(error: unknown): HTTPResult {
-  if (!(error instanceof HTTPResult)) {
-    throw new Error("Expected an HTTPResult error");
-  }
-
-  return error;
-}
-
-function isObjectRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
-}
-
-function parsePayload(value: unknown): ValidatedPayload {
-  if (!isObjectRecord(value)) {
-    throw new Error(VALIDATION_ERROR_MESSAGE);
-  }
-
-  const nameValue = value.name;
-  const activeValue = value.active;
-
-  if (typeof nameValue !== "string" || typeof activeValue !== "boolean") {
+function parsePayload(
+  body: Parameters<typeof assertValidation>[0],
+): ValidatedPayload {
+  if (!(body instanceof RawPayload)) {
     throw new Error(VALIDATION_ERROR_MESSAGE);
   }
 
   return {
-    name: nameValue,
-    active: activeValue,
+    name: body.name,
+    active: body.active,
   };
 }
 
@@ -61,77 +48,52 @@ function mapValidationError(): ValidationErrorPayload {
 describe("API Util Interface", () => {
   describe("assert", () => {
     it("returns when the condition is truthy", () => {
-      nodeAssert.doesNotThrow(() =>
+      assert.doesNotThrow(() =>
         assertCondition(true, BAD_REQUEST_CODE, ASSERTION_ERROR_MESSAGE),
       );
     });
 
     it("throws HTTPResult when the condition is falsy", () => {
-      let thrownError: unknown;
+      const httpError = captureHTTPResult(() =>
+        assertCondition(false, BAD_REQUEST_CODE, ASSERTION_ERROR_MESSAGE),
+      );
 
-      try {
-        assertCondition(false, BAD_REQUEST_CODE, ASSERTION_ERROR_MESSAGE);
-      } catch (error: unknown) {
-        thrownError = error;
-      }
-
-      const httpError = toHTTPResult(thrownError);
-      nodeAssert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
-      nodeAssert.equal(httpError.getBody(), ASSERTION_ERROR_MESSAGE);
+      assert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
+      assert.equal(httpError.getBody(), ASSERTION_ERROR_MESSAGE);
     });
   });
 
   describe("assertValidation", () => {
     it("returns parsed payload when validation succeeds", () => {
-      const payload = assertValidation(
-        {
-          name: "antelope",
-          active: true,
-        },
-        parsePayload,
-      );
+      const input = new RawPayload("antelope", true);
+      const payload = assertValidation(input, parsePayload);
 
-      nodeAssert.equal(payload.name, "antelope");
-      nodeAssert.equal(payload.active, true);
+      assert.notEqual(payload, input);
+      assert.equal(payload.name, "antelope");
+      assert.equal(payload.active, true);
     });
 
     it("throws HTTPResult with default code and serialized error message", () => {
-      let thrownError: unknown;
-
-      try {
-        assertValidation({}, parsePayload);
-      } catch (error: unknown) {
-        thrownError = error;
-      }
-
-      const httpError = toHTTPResult(thrownError);
-      nodeAssert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
-      nodeAssert.equal(
-        httpError.getBody(),
-        `Error: ${VALIDATION_ERROR_MESSAGE}`,
+      const httpError = captureHTTPResult(() =>
+        assertValidation({}, parsePayload),
       );
+
+      assert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
+      assert.equal(httpError.getBody(), `Error: ${VALIDATION_ERROR_MESSAGE}`);
     });
 
     it("applies custom error mapper and status code", () => {
-      let thrownError: unknown;
-
-      try {
+      const httpError = captureHTTPResult(() =>
         assertValidation(
           {},
           parsePayload,
           mapValidationError,
           UNPROCESSABLE_ENTITY_CODE,
-        );
-      } catch (error: unknown) {
-        thrownError = error;
-      }
-
-      const httpError = toHTTPResult(thrownError);
-      nodeAssert.equal(httpError.getStatus(), UNPROCESSABLE_ENTITY_CODE);
-      nodeAssert.equal(
-        httpError.getBody(),
-        JSON.stringify(mapValidationError()),
+        ),
       );
+
+      assert.equal(httpError.getStatus(), UNPROCESSABLE_ENTITY_CODE);
+      assert.equal(httpError.getBody(), JSON.stringify(mapValidationError()));
     });
   });
 });
