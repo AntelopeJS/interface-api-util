@@ -38,6 +38,10 @@ function parsePayload(
   };
 }
 
+function countBytes(body: Buffer): number {
+  return body.length;
+}
+
 function mapValidationError(): ValidationErrorPayload {
   return {
     code: VALIDATION_ERROR_CODE,
@@ -71,6 +75,12 @@ describe("API Util Interface", () => {
       assert.notEqual(payload, input);
       assert.equal(payload.name, "antelope");
       assert.equal(payload.active, true);
+    });
+
+    it("hands the validator a body of the caller's own type", () => {
+      const byteCount = assertValidation(Buffer.from("antelope"), countBytes);
+
+      assert.equal(byteCount, "antelope".length);
     });
 
     it("throws HTTPResult with default code and serialized error message", () => {

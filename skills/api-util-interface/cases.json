@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "api-util-interface-validate-body",
+      "area": "framework",
+      "style": "clean",
+      "prompt": "In a POST handler I receive the raw request body as a Buffer. How do I validate it with a Zod schema and return a 400 when it is invalid?",
+      "expect": {
+        "skills": ["api-util-interface"],
+        "acceptable": ["api-interface", "ajs-consume-interface", "antelopejs"],
+        "mustMention": ["assertValidation"]
+      }
+    },
+    {
+      "id": "api-util-interface-not-found-casual",
+      "area": "framework",
+      "style": "casual",
+      "prompt": "how do i send a 404 from my controller when the record does not exist",
+      "expect": {
+        "skills": ["api-util-interface"],
+        "acceptable": ["api-interface", "ajs-consume-interface", "antelopejs"],
+        "mustMention": ["assert"]
+      }
+    },
+    {
+      "id": "api-util-interface-rate-limit",
+      "area": "framework",
+      "style": "clean",
+      "prompt": "Limit my login route to 5 attempts per minute per client and answer 429 beyond that.",
+      "expect": {
+        "skills": ["api-util-interface"],
+        "acceptable": ["api-interface", "ajs-consume-interface", "antelopejs"],
+        "mustMention": ["RateLimit"]
+      }
+    },
+    {
+      "id": "api-util-interface-rate-limit-ignored-casual",
+      "area": "framework",
+      "style": "casual",
+      "prompt": "my rate limit decorator does nothing and startup throws an error about ordering",
+      "expect": {
+        "skills": ["api-util-interface"],
+        "acceptable": ["api-interface", "antelopejs"],
+        "mustMention": ["RateLimit", "beneath"]
+      }
+    },
+    {
+      "id": "api-util-interface-controller-neighbour",
+      "area": "framework",
+      "style": "clean",
+      "prompt": "Add a GET endpoint with a prefix handler that runs before every route in my controller.",
+      "expect": {
+        "skills": ["api-interface"],
+        "acceptable": ["antelopejs", "ajs-consume-interface"],
+        "avoid": ["api-util-interface"]
+      }
+    }
+  ]
+}

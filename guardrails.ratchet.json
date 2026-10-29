@@ -1,6 +1,6 @@
 {
   "rules": {
-    "anti-slop/no-unknown-parameters": 3,
+    "anti-slop/no-unknown-parameters": 1,
     "anti-slop/no-unknown-returns": 1
   },
   "oversizeFiles": {}

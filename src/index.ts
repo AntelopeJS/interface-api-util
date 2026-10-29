@@ -43,6 +43,13 @@ export function assert<T>(
  * The result of this error handler will be passed directly as the body of the HTTPResult.
  * If no error handler is given, assertValidation will resort to calling the error's toString() method if possible.
  *
+ * The validator receives the body at the type of the argument you pass (`Input`, inferred from `body`;
+ * `unknown` when you give an explicit `T` only). A validator that accepts a wider type, such as
+ * `schema.parse`, always fits; one that accepts a narrower type than the body is rejected at compile time,
+ * except when the body is typed `any`, which fits every validator.
+ *
+ * @typeParam T Type of the validated result
+ * @typeParam Input Type of the body; the validator receives it at this type
  * @param body Input to validate
  * @param validator Validator function
  * @param errorFunc Error handler
@@ -59,9 +66,9 @@ export function assert<T>(
  * const { name } = assertValidation(requestBody, schema.parse);
  * ```
  */
-export function assertValidation<T>(
-  body: unknown,
-  validator: (body: unknown) => T,
+export function assertValidation<T, Input = unknown>(
+  body: Input,
+  validator: (body: Input) => T,
   errorFunc?: (err: unknown) => unknown,
   code = 400,
 ): T {
