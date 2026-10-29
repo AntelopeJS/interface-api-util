@@ -64,7 +64,7 @@ class MembersController extends Controller("members") {
   @Post()
   async create(@RawBody() body: Buffer) {
     const { fullName, email } = assertValidation(body, (b) =>
-      createMemberSchema.parse(JSON.parse((b as Buffer).toString())),
+      createMemberSchema.parse(JSON.parse(b.toString())),
     );
     return new HTTPResult(201, await saveMember({ fullName, email }));
   }
@@ -73,9 +73,11 @@ class MembersController extends Controller("members") {
 
 - `assert(condition, code, message)` — throws `new HTTPResult(code, message)` when falsy; uses
   TypeScript `asserts condition`, so the compiler narrows after the call.
-- `assertValidation(body, validator, errorFunc?, code = 400)` — returns the validator's result;
-  if the validator throws, rethrows an `HTTPResult` whose body is `errorFunc(err)` if provided,
-  otherwise `String(err)`.
+- `assertValidation<T, Input = unknown>(body, validator, errorFunc?, code = 400)` — returns the
+  validator's result; if the validator throws, rethrows an `HTTPResult` whose body is
+  `errorFunc(err)` if provided, otherwise `String(err)`. `Input` is the type of `body`, and the
+  validator receives it at that type (a `Buffer` body needs no cast). A validator taking a wider
+  type (`schema.parse`) fits; one taking a narrower type than the body is a compile error.
 - `RateLimit(limit, windowMs, options?)` — fixed-window counter per key; over-limit requests throw
   a 429 `HTTPResult` (with `Retry-After`) before the handler runs. Successful responses get
   `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` (epoch seconds) headers.
