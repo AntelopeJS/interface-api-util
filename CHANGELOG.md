@@ -1,5 +1,39 @@
 # Changelog
 
+## v0.2.0
+
+[compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.1.3...v0.2.0)
+
+### 🚀 Enhancements
+
+- **api-util:** ⚠️  Tighten the published contract ([#25](https://github.com/AntelopeJS/interface-api-util/pull/25))
+
+### 💅 Refactors
+
+- Clean the repo with the guardrail pack ([#23](https://github.com/AntelopeJS/interface-api-util/pull/23))
+
+### 📖 Documentation
+
+- Improve task-based onboarding and contract guidance ([#18](https://github.com/AntelopeJS/interface-api-util/pull/18))
+- Clarify learning paths and illustrate real outcomes ([#20](https://github.com/AntelopeJS/interface-api-util/pull/20))
+
+### 📦 Build
+
+- **deps:** Upgrade @antelopejs/tooling-configs to 0.2.11 ([#24](https://github.com/AntelopeJS/interface-api-util/pull/24))
+
+### 🏡 Chore
+
+- Adopt the guardrail pack from tooling-configs 0.2.0 ([#21](https://github.com/AntelopeJS/interface-api-util/pull/21))
+- Configure Renovate with the shared preset ([#22](https://github.com/AntelopeJS/interface-api-util/pull/22))
+
+#### ⚠️ Breaking Changes
+
+- **api-util:** ⚠️  Tighten the published contract ([#25](https://github.com/AntelopeJS/interface-api-util/pull/25))
+
+### ❤️ Contributors
+
+- Antony Rizzitelli ([@Upd4ting](http://github.com/Upd4ting))
+
 ## v0.1.3
 
 [compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.1.2...v0.1.3)
