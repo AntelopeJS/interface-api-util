@@ -45,7 +45,8 @@ export function assert<T>(
  *
  * The validator receives the body at the type of the argument you pass (`Input`, inferred from `body`;
  * `unknown` when you give an explicit `T` only). A validator that accepts a wider type, such as
- * `schema.parse`, always fits; one that accepts a narrower type than the body is rejected at compile time.
+ * `schema.parse`, always fits; one that accepts a narrower type than the body is rejected at compile time,
+ * except when the body is typed `any`, which fits every validator.
  *
  * @typeParam T Type of the validated result
  * @typeParam Input Type of the body; the validator receives it at this type
