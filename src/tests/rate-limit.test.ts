@@ -30,6 +30,8 @@ const RATELIMIT_LIMIT_HEADER = "X-RateLimit-Limit";
 const RATELIMIT_REMAINING_HEADER = "X-RateLimit-Remaining";
 const RATELIMIT_RESET_HEADER = "X-RateLimit-Reset";
 
+type WindowStore = Parameters<typeof hitWindow>[0];
+
 function makeContext(remoteAddress?: string): RequestContext {
   const socket = new Socket();
   Object.defineProperty(socket, "remoteAddress", { value: remoteAddress });
@@ -66,7 +68,7 @@ function guardProvider(controller: ControllerClass): ParameterProvider {
 function describeWindows(): void {
   describe("hitWindow", () => {
     it("allows up to the limit then denies within the window", () => {
-      const store = new Map();
+      const store: WindowStore = new Map();
       const first = hitWindow(store, "a", LIMIT, WINDOW_MS, 0);
       const second = hitWindow(store, "a", LIMIT, WINDOW_MS, 10);
       const third = hitWindow(store, "a", LIMIT, WINDOW_MS, 20);
@@ -80,7 +82,7 @@ function describeWindows(): void {
     });
 
     it("reports the time remaining until the window resets", () => {
-      const store = new Map();
+      const store: WindowStore = new Map();
       hitWindow(store, "a", LIMIT, WINDOW_MS, 1000);
       const decision = hitWindow(store, "a", LIMIT, WINDOW_MS, 1500);
 
@@ -88,7 +90,7 @@ function describeWindows(): void {
     });
 
     it("resets the window once it has elapsed", () => {
-      const store = new Map();
+      const store: WindowStore = new Map();
       hitWindow(store, "a", LIMIT, WINDOW_MS, 0);
       hitWindow(store, "a", LIMIT, WINDOW_MS, 1);
       const denied = hitWindow(store, "a", LIMIT, WINDOW_MS, 2);
@@ -100,7 +102,7 @@ function describeWindows(): void {
     });
 
     it("tracks each key independently", () => {
-      const store = new Map();
+      const store: WindowStore = new Map();
       hitWindow(store, "a", LIMIT, WINDOW_MS, 0);
       hitWindow(store, "a", LIMIT, WINDOW_MS, 1);
       const otherKey = hitWindow(store, "b", LIMIT, WINDOW_MS, 2);
@@ -112,7 +114,7 @@ function describeWindows(): void {
 
   describe("pruneExpired", () => {
     it("removes only windows whose duration has fully elapsed", () => {
-      const store = new Map();
+      const store: WindowStore = new Map();
       hitWindow(store, "old", LIMIT, WINDOW_MS, 0);
       hitWindow(store, "fresh", LIMIT, WINDOW_MS, WINDOW_MS);
 
