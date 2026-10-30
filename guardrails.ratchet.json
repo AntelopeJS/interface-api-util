@@ -4,7 +4,7 @@
     "anti-slop/no-unknown-parameters": 1,
     "anti-slop/no-unknown-returns": 1,
     "typescript/no-unnecessary-type-parameters": 1,
-    "typescript/no-unsafe-argument": 16
+    "typescript/no-unsafe-argument": 1
   },
   "oversizeFiles": {}
 }
