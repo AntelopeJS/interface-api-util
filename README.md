@@ -69,7 +69,7 @@ Place `@RateLimit` directly below the route decorator. Placed above it, `@RateLi
 
 ## Compatibility
 
-Use with `@antelopejs/core` 1.x and the following peer dependencies:
+The module declares these peer dependencies:
 
 <!-- antelopejs-docs-compat:start -->
 
