@@ -14,10 +14,10 @@ interface ValidatedPayload {
   active: boolean;
 }
 
-interface ValidationErrorPayload {
+type ValidationErrorPayload = {
   code: string;
   detail: string;
-}
+};
 
 const BAD_REQUEST_CODE = 400;
 const UNPROCESSABLE_ENTITY_CODE = 422;

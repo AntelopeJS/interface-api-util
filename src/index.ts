@@ -1,4 +1,4 @@
-import { HTTPResult } from "@antelopejs/interface-api";
+import { type HTTPBody, HTTPResult } from "@antelopejs/interface-api";
 
 export * from "./rate-limit";
 
@@ -24,8 +24,8 @@ export * from "./rate-limit";
  * }
  * ```
  */
-export function assert<T>(
-  condition: T,
+export function assert(
+  condition: unknown,
   code: number,
   message: string,
 ): asserts condition {
@@ -40,7 +40,7 @@ export function assert<T>(
  * Promises are returned unchanged; asynchronous rejections are not converted.
  *
  * The error thrown by the validator may be altered by passing an error handler.
- * The result of this error handler will be passed directly as the body of the HTTPResult.
+ * The result of this error handler, an `HTTPBody`, is the body of the HTTPResult.
  * If no error handler is given, assertValidation will resort to calling the error's toString() method if possible.
  *
  * The validator receives the body at the type of the argument you pass (`Input`, inferred from `body`;
@@ -69,7 +69,7 @@ export function assert<T>(
 export function assertValidation<T, Input = unknown>(
   body: Input,
   validator: (body: Input) => T,
-  errorFunc?: (err: unknown) => unknown,
+  errorFunc?: (err: unknown) => HTTPBody,
   code = 400,
 ): T {
   try {
