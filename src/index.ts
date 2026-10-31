@@ -24,8 +24,8 @@ export * from "./rate-limit";
  * }
  * ```
  */
-export function assert<T>(
-  condition: T,
+export function assert(
+  condition: unknown,
   code: number,
   message: string,
 ): asserts condition {
