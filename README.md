@@ -73,10 +73,10 @@ Use with `@antelopejs/core` 1.x and the following peer dependencies:
 
 <!-- antelopejs-docs-compat:start -->
 
-| Package                      | Supported         | Tested with |
-| ---------------------------- | ----------------- | ----------- |
-| `@antelopejs/interface-api`  | `>=0.0.15 <1.0.0` | `0.0.15`    |
-| `@antelopejs/interface-core` | `>=0.2.4 <1.0.0`  | `0.2.4`     |
+| Package                      | Supported         | Tested with                                               |
+| ---------------------------- | ----------------- | --------------------------------------------------------- |
+| `@antelopejs/interface-api`  | `>=0.0.15 <1.0.0` | `file:.campaign/tgz/antelopejs-interface-api-71528ee.tgz` |
+| `@antelopejs/interface-core` | `>=0.2.4 <1.0.0`  | `0.2.4`                                                   |
 
 <!-- antelopejs-docs-compat:end -->
 
