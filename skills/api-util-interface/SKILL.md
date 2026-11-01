@@ -75,7 +75,7 @@ class MembersController extends Controller("members") {
   TypeScript `asserts condition`, so the compiler narrows after the call.
 - `assertValidation<T, Input = unknown>(body, validator, errorFunc?, code = 400)` — returns the
   validator's result; if the validator throws, rethrows an `HTTPResult` whose body is
-  `errorFunc(err)` if provided, otherwise `String(err)`. `Input` is the type of `body`, and the
+  `errorFunc(err)` (an `HTTPBody`, or `undefined` for an empty body) if provided, otherwise `String(err)`. `Input` is the type of `body`, and the
   validator receives it at that type (a `Buffer` body needs no cast). A validator taking a wider
   type (`schema.parse`) fits; one taking a narrower type than the body is a compile error, unless the body is typed `any`.
 - `RateLimit(limit, windowMs, options?)` — fixed-window counter per key; over-limit requests throw
