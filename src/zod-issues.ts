@@ -7,6 +7,12 @@ interface IssueLike {
   readonly message: string;
 }
 
+function isPlainObject(value: unknown): value is object {
+  if (typeof value !== "object" || value === null) return false;
+  const prototype: unknown = Object.getPrototypeOf(value);
+  return prototype === null || prototype === Object.prototype;
+}
+
 /**
  * Whether a value is a JSON value, exactly: what `HTTPBody` accepts without a `toJSON` method.
  *
@@ -17,13 +23,17 @@ export function isHTTPBody(value: unknown): value is HTTPBody {
   if (
     value === null ||
     typeof value === "string" ||
-    typeof value === "number" ||
     typeof value === "boolean"
   ) {
     return true;
   }
-  if (Array.isArray(value)) return value.every(isHTTPBody);
-  return typeof value === "object" && Object.values(value).every(isHTTPBody);
+  if (typeof value === "number") return Number.isFinite(value);
+  if (Array.isArray(value)) {
+    return Array.from(value.keys()).every(
+      (index) => Object.hasOwn(value, index) && isHTTPBody(value[index]),
+    );
+  }
+  return isPlainObject(value) && Object.values(value).every(isHTTPBody);
 }
 
 /**
