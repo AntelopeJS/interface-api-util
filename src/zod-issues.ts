@@ -7,7 +7,13 @@ interface IssueLike {
   readonly message: string;
 }
 
-function isHTTPBody(value: unknown): value is HTTPBody {
+/**
+ * Whether a value is a JSON value, exactly: what `HTTPBody` accepts without a `toJSON` method.
+ *
+ * @param value Any value
+ * @returns Whether `value` is an `HTTPBody` of JSON values
+ */
+export function isHTTPBody(value: unknown): value is HTTPBody {
   if (
     value === null ||
     typeof value === "string" ||
