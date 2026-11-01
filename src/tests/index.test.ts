@@ -19,6 +19,8 @@ interface ValidationErrorPayload {
   detail: string;
 }
 
+type ValidationIssue = { path: string[]; message: string };
+
 const BAD_REQUEST_CODE = 400;
 const UNPROCESSABLE_ENTITY_CODE = 422;
 const ASSERTION_ERROR_MESSAGE = "Missing payload";
@@ -47,6 +49,14 @@ function mapValidationError(): ValidationErrorPayload {
     code: VALIDATION_ERROR_CODE,
     detail: VALIDATION_ERROR_MESSAGE,
   };
+}
+
+function mapIssueList(): ValidationIssue[] {
+  return [{ path: ["name"], message: "bad" }];
+}
+
+function refuseSilently(): undefined {
+  return undefined;
 }
 
 describe("API Util Interface", () => {
@@ -104,6 +114,25 @@ describe("API Util Interface", () => {
 
       assert.equal(httpError.getStatus(), UNPROCESSABLE_ENTITY_CODE);
       assert.equal(httpError.getBody(), JSON.stringify(mapValidationError()));
+    });
+
+    it("answers a JSON array from the error handler as JSON text", () => {
+      const httpError = captureHTTPResult(() =>
+        assertValidation({}, parsePayload, mapIssueList),
+      );
+
+      assert.equal(httpError.getBody(), '[{"path":["name"],"message":"bad"}]');
+      assert.equal(httpError.getContentType(), "application/json");
+    });
+
+    it("answers an empty text body when the error handler returns undefined", () => {
+      const httpError = captureHTTPResult(() =>
+        assertValidation({}, parsePayload, refuseSilently),
+      );
+
+      assert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
+      assert.equal(httpError.getBody(), "");
+      assert.equal(httpError.getContentType(), "text/plain");
     });
   });
 });
