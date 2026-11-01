@@ -1,6 +1,7 @@
 import { type HTTPBody, HTTPResult } from "@antelopejs/interface-api";
 
 export * from "./rate-limit";
+export * from "./zod-issues";
 
 /**
  * Assert a condition is truthy, throwing an HTTPResult error if false.
