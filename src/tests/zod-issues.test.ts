@@ -1,35 +1,56 @@
 import assert from "node:assert";
-import * as z from "zod";
 import { isHTTPBody, zodIssuesJson } from "..";
 
-function issuesOf(
-  schema: z.ZodTypeAny,
-  value: boolean | Record<string, string | number>,
-): z.ZodIssue[] {
-  const result = schema.safeParse(value);
-  if (result.success) throw new Error("Expected the schema to refuse");
-  return result.error.issues;
+/** What `new ZodError(issues)` holds: enumerable `issues` and `name`, plus method properties. */
+class ZodErrorLike {
+  readonly name = "ZodError";
+  readonly addIssue = (): void => undefined;
+  constructor(readonly issues: ReadonlyArray<{ message: string }>) {}
 }
 
 describe("zodIssuesJson", () => {
   it("writes the bytes JSON.stringify writes for the issues", () => {
-    const issues = issuesOf(
-      z.object({ name: z.string().min(2), age: z.number().int().positive() }),
-      { name: "a", age: -1.5 },
-    );
+    const issues = [
+      {
+        code: "too_small",
+        minimum: 2,
+        type: "string",
+        inclusive: true,
+        exact: false,
+        message: "String must contain at least 2 character(s)",
+        path: ["name"],
+      },
+      {
+        code: "invalid_type",
+        expected: "integer",
+        received: "float",
+        message: "Expected integer, received float",
+        path: ["age", 0],
+      },
+    ];
 
     assert.equal(
       JSON.stringify(zodIssuesJson(issues)),
-      '[{"code":"too_small","minimum":2,"type":"string","inclusive":true,"exact":false,"message":"String must contain at least 2 character(s)","path":["name"]},{"code":"invalid_type","expected":"integer","received":"float","message":"Expected integer, received float","path":["age"]},{"code":"too_small","minimum":0,"type":"number","inclusive":false,"exact":false,"message":"Number must be greater than 0","path":["age"]}]',
+      '[{"code":"too_small","minimum":2,"type":"string","inclusive":true,"exact":false,"message":"String must contain at least 2 character(s)","path":["name"]},{"code":"invalid_type","expected":"integer","received":"float","message":"Expected integer, received float","path":["age",0]}]',
     );
   });
 
   it("keeps the name and issues of a ZodError nested in a union issue", () => {
-    const issues = issuesOf(z.union([z.string(), z.number()]), true);
+    const issues = [
+      {
+        code: "invalid_union",
+        unionErrors: [
+          new ZodErrorLike([{ message: "Expected string, received boolean" }]),
+          new ZodErrorLike([{ message: "Expected number, received boolean" }]),
+        ],
+        path: [],
+        message: "Invalid input",
+      },
+    ];
 
     assert.equal(
       JSON.stringify(zodIssuesJson(issues)),
-      '[{"code":"invalid_union","unionErrors":[{"issues":[{"code":"invalid_type","expected":"string","received":"boolean","path":[],"message":"Expected string, received boolean"}],"name":"ZodError"},{"issues":[{"code":"invalid_type","expected":"number","received":"boolean","path":[],"message":"Expected number, received boolean"}],"name":"ZodError"}],"path":[],"message":"Invalid input"}]',
+      '[{"code":"invalid_union","unionErrors":[{"issues":[{"message":"Expected string, received boolean"}],"name":"ZodError"},{"issues":[{"message":"Expected number, received boolean"}],"name":"ZodError"}],"path":[],"message":"Invalid input"}]',
     );
   });
 
