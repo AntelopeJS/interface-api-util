@@ -1,5 +1,8 @@
 import { GetMetadata } from "@antelopejs/interface-core";
-import { MakeMethodDecorator } from "@antelopejs/interface-core/decorators";
+import {
+  type DecoratorTarget,
+  MakeMethodDecorator,
+} from "@antelopejs/interface-core/decorators";
 import {
   ControllerMeta,
   getRegisteredRoutes,
@@ -146,9 +149,7 @@ function buildLimitResult(
   return result;
 }
 
-function getControllerMeta(target: {
-  constructor: { location: string };
-}): ControllerMeta {
+function getControllerMeta(target: DecoratorTarget): ControllerMeta {
   return GetMetadata(target.constructor, ControllerMeta);
 }
 
