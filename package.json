@@ -49,9 +49,7 @@
     "prepare": "if git rev-parse --is-inside-work-tree >/dev/null 2>&1 && command -v lefthook >/dev/null 2>&1; then lefthook install; fi",
     "checks": "antelopejs-checks",
     "size": "antelopejs-check-size",
-    "ratchet": "antelopejs-ratchet",
     "sync": "antelopejs-sync",
-    "ratchet:update": "antelopejs-ratchet --update",
     "sync:check": "antelopejs-sync --check",
     "typecheck": "tsc --noEmit",
     "suppressions": "antelopejs-suppressions",
@@ -61,7 +59,7 @@
     "@antelopejs/core": "^1.16.0",
     "@antelopejs/interface-api": "file:.campaign/tgz/antelopejs-interface-api-015a93a.tgz",
     "@antelopejs/interface-core": "file:.campaign/tgz/antelopejs-interface-core-f7df541.tgz",
-    "@antelopejs/tooling-configs": "^0.2.17",
+    "@antelopejs/tooling-configs": "file:.campaign/tgz/antelopejs-tooling-configs-263f673.tgz",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.19.15",
     "eslint-plugin-perfectionist": "^5.11.0",
@@ -83,7 +81,8 @@
   "pnpm": {
     "overrides": {
       "@antelopejs/interface-api": "file:.campaign/tgz/antelopejs-interface-api-015a93a.tgz",
-      "@antelopejs/interface-core": "file:.campaign/tgz/antelopejs-interface-core-f7df541.tgz"
+      "@antelopejs/interface-core": "file:.campaign/tgz/antelopejs-interface-core-f7df541.tgz",
+      "@antelopejs/tooling-configs": "file:.campaign/tgz/antelopejs-tooling-configs-263f673.tgz"
     }
   },
   "antelopeJs": {
