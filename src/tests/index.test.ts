@@ -21,15 +21,21 @@ type ValidationErrorPayload = {
 
 type ValidationIssue = { path: string[]; message: string };
 
+interface MalformedBody {
+  readonly malformed: true;
+}
+
+type PayloadBody = RawPayload | MalformedBody;
+
+const MALFORMED_BODY: MalformedBody = { malformed: true };
+
 const BAD_REQUEST_CODE = 400;
 const UNPROCESSABLE_ENTITY_CODE = 422;
 const ASSERTION_ERROR_MESSAGE = "Missing payload";
 const VALIDATION_ERROR_MESSAGE = "Invalid payload";
 const VALIDATION_ERROR_CODE = "VALIDATION_ERROR";
 
-function parsePayload(
-  body: Parameters<typeof assertValidation>[0],
-): ValidatedPayload {
+function parsePayload(body: PayloadBody): ValidatedPayload {
   if (!(body instanceof RawPayload)) {
     throw new Error(VALIDATION_ERROR_MESSAGE);
   }
@@ -95,7 +101,7 @@ describe("API Util Interface", () => {
 
     it("throws HTTPResult with default code and serialized error message", () => {
       const httpError = captureHTTPResult(() =>
-        assertValidation({}, parsePayload),
+        assertValidation(MALFORMED_BODY, parsePayload),
       );
 
       assert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
@@ -105,7 +111,7 @@ describe("API Util Interface", () => {
     it("applies custom error mapper and status code", () => {
       const httpError = captureHTTPResult(() =>
         assertValidation(
-          {},
+          MALFORMED_BODY,
           parsePayload,
           mapValidationError,
           UNPROCESSABLE_ENTITY_CODE,
@@ -118,7 +124,7 @@ describe("API Util Interface", () => {
 
     it("answers a JSON array from the error handler as JSON text", () => {
       const httpError = captureHTTPResult(() =>
-        assertValidation({}, parsePayload, mapIssueList),
+        assertValidation(MALFORMED_BODY, parsePayload, mapIssueList),
       );
 
       assert.equal(httpError.getBody(), '[{"path":["name"],"message":"bad"}]');
@@ -127,7 +133,7 @@ describe("API Util Interface", () => {
 
     it("answers an empty text body when the error handler returns undefined", () => {
       const httpError = captureHTTPResult(() =>
-        assertValidation({}, parsePayload, refuseSilently),
+        assertValidation(MALFORMED_BODY, parsePayload, refuseSilently),
       );
 
       assert.equal(httpError.getStatus(), BAD_REQUEST_CODE);
