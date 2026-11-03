@@ -1,10 +1,10 @@
-# @antelopejs/interface-api-util
+# `@antelopejs/interface-api-util`
 
 <div align="center">
-<a href="https://www.npmjs.com/package/@antelopejs/interface-api-util"><img alt="npm" src="https://img.shields.io/npm/v/@antelopejs/interface-api-util?style=for-the-badge&labelColor=000000&color=000000"></a>
-<a href="./LICENSE"><img alt="License" src="https://img.shields.io/npm/l/@antelopejs/interface-api-util?style=for-the-badge&labelColor=000000&color=000000"></a>
-<a href="https://discord.gg/g4pFt6eXqu"><img alt="Discord" src="https://img.shields.io/badge/Discord-18181B?logo=discord&style=for-the-badge&color=000000"></a>
-<a href="https://interfaces.antelopejs.com/docs/api-util"><img alt="Docs" src="https://img.shields.io/badge/Docs-18181B?style=for-the-badge&color=000000"></a>
+<a href="https://www.npmjs.com/package/@antelopejs/interface-api-util"><img data-illustration alt="npm" src="https://img.shields.io/npm/v/@antelopejs/interface-api-util?style=for-the-badge&labelColor=000000&color=000000"></a>
+<a href="./LICENSE"><img data-illustration alt="License" src="https://img.shields.io/npm/l/@antelopejs/interface-api-util?style=for-the-badge&labelColor=000000&color=000000"></a>
+<a href="https://discord.gg/g4pFt6eXqu"><img data-illustration alt="Discord" src="https://img.shields.io/badge/Discord-18181B?logo=discord&style=for-the-badge&color=000000"></a>
+<a href="https://interfaces.antelopejs.com/docs/api-util"><img data-illustration alt="Docs" src="https://img.shields.io/badge/Docs-18181B?style=for-the-badge&color=000000"></a>
 </div>
 
 Request validation and rate limiting helpers for handlers written against [`@antelopejs/interface-api`](https://github.com/AntelopeJS/interface-api). Every failure becomes an `HTTPResult` error response.
@@ -12,7 +12,7 @@ Request validation and rate limiting helpers for handlers written against [`@ant
 ## What it offers
 
 - `assert(condition, code, message)` throws an `HTTPResult` when the condition is falsy and narrows its type when it holds.
-- `assertValidation(body, validator)` runs a synchronous validator, such as a Zod `parse`, and turns a thrown error into a `400` response.
+- `assertValidation(body, validator)` runs a synchronous validator, such as a Zod `parse`, and turns a thrown error into an error response, `400` by default.
 - `@RateLimit(limit, windowMs)` caps calls to a handler per client in a fixed window and answers `429` beyond it.
 
 ## Implementations
