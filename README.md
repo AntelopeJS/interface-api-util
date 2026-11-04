@@ -9,6 +9,8 @@
 
 Request validation and rate limiting helpers for handlers written against [`@antelopejs/interface-api`](https://github.com/AntelopeJS/interface-api). Every failure becomes an `HTTPResult` error response.
 
+Part of [AntelopeJS](https://github.com/AntelopeJS/antelopejs). Used by [AntelopeJS DMS](https://github.com/AntelopeJS/dms), the open-source back office for your PostgreSQL, MongoDB or RethinkDB database.
+
 ## What it offers
 
 - `assert(condition, code, message)` throws an `HTTPResult` when the condition is falsy and narrows its type when it holds.
