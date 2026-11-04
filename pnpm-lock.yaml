@@ -7,7 +7,6 @@ settings:
 overrides:
   '@antelopejs/interface-api': file:.campaign/tgz/antelopejs-interface-api-015a93a.tgz
   '@antelopejs/interface-core': file:.campaign/tgz/antelopejs-interface-core-f7df541.tgz
-  '@antelopejs/tooling-configs': file:.campaign/tgz/antelopejs-tooling-configs-263f673.tgz
 
 importers:
 
@@ -24,8 +23,8 @@ importers:
         specifier: ^1.16.0
         version: 1.16.0
       '@antelopejs/tooling-configs':
-        specifier: file:.campaign/tgz/antelopejs-tooling-configs-263f673.tgz
-        version: file:.campaign/tgz/antelopejs-tooling-configs-263f673.tgz(eslint-plugin-perfectionist@5.11.0(eslint@10.10.0(jiti@2.7.0))(typescript@5.9.3))(knip@6.34.0)(oxfmt@0.66.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2001))
+        specifier: ^0.2.18
+        version: 0.2.18(eslint-plugin-perfectionist@5.11.0(eslint@10.10.0(jiti@2.7.0))(typescript@5.9.3))(knip@6.34.0)(oxfmt@0.66.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2001))
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -80,9 +79,8 @@ packages:
     resolution: {integrity: sha512-ur2KLvtD8h4SCZ0VSoQDc1pg+E9Bk/py3EW3qHHdoo3i6RvKWrrDKsX2khVdqQESuF2QMc1sJ6B+7ISjx5TvpQ==, tarball: file:.campaign/tgz/antelopejs-interface-core-f7df541.tgz}
     version: 0.4.0
 
-  '@antelopejs/tooling-configs@file:.campaign/tgz/antelopejs-tooling-configs-263f673.tgz':
-    resolution: {integrity: sha512-NKTHjz4mi5lVPpxX5TIR+aw/IcvWTCTEjqFzrvvV0uMYiHSpVg7yL8UXnMBAS5xhVOrrEbUqZD7Rnk6y40qDNg==, tarball: file:.campaign/tgz/antelopejs-tooling-configs-263f673.tgz}
-    version: 0.2.17
+  '@antelopejs/tooling-configs@0.2.18':
+    resolution: {integrity: sha512-bLZ5u4GQUdatgN0+9tJjwv2WXUBApPslgBKb3h98GYK34U1Potxrv5VVldLwmx54+Ldu8EPOp4PShLZqw+SkJw==}
     engines: {node: '>=22.18.0'}
     hasBin: true
     peerDependencies:
@@ -2537,7 +2535,7 @@ snapshots:
     dependencies:
       reflect-metadata: 0.2.2
 
-  '@antelopejs/tooling-configs@file:.campaign/tgz/antelopejs-tooling-configs-263f673.tgz(eslint-plugin-perfectionist@5.11.0(eslint@10.10.0(jiti@2.7.0))(typescript@5.9.3))(knip@6.34.0)(oxfmt@0.66.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2001))':
+  '@antelopejs/tooling-configs@0.2.18(eslint-plugin-perfectionist@5.11.0(eslint@10.10.0(jiti@2.7.0))(typescript@5.9.3))(knip@6.34.0)(oxfmt@0.66.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2001))':
     dependencies:
       '@oxlint/plugins': 1.81.0
       dts-bundle-generator: 9.5.1
