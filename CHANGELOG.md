@@ -1,5 +1,27 @@
 # Changelog
 
+## v0.3.0
+
+[compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.2.0...v0.3.0)
+
+### 📖 Documentation
+
+- **readme:** Use one Discord invite ([#31](https://github.com/AntelopeJS/interface-api-util/pull/31))
+- **github:** Send questions and ideas to Discord ([#35](https://github.com/AntelopeJS/interface-api-util/pull/35))
+- **readme:** Link the package to AntelopeJS and AntelopeJS DMS ([2e0fe96](https://github.com/AntelopeJS/interface-api-util/commit/2e0fe96))
+
+### 📦 Build
+
+- **deps:** Bump @antelopejs/tooling-configs to 0.2.17 ([#27](https://github.com/AntelopeJS/interface-api-util/pull/27))
+
+### 🏡 Chore
+
+- Land the cleanup campaign on main ([#45](https://github.com/AntelopeJS/interface-api-util/pull/45))
+
+### ❤️ Contributors
+
+- Antony Rizzitelli ([@Upd4ting](http://github.com/Upd4ting))
+
 ## v0.2.0
 
 [compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.1.3...v0.2.0)
