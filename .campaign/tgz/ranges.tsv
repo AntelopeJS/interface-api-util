@@ -1,4 +1,2 @@
 @antelopejs/interface-api	package.json	devDependencies	^0.0.15
 @antelopejs/interface-api	package.json	pnpm.overrides	
-@antelopejs/interface-core	package.json	devDependencies	^0.2.4
-@antelopejs/interface-core	package.json	pnpm.overrides	
