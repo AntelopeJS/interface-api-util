@@ -17,6 +17,8 @@ jobs:
         README.md
         docs
       docs-typescript-project: docs/tsconfig.json
+      cache-paths: .antelope/cache
+      cache-key-files: src/antelope.test.ts
       renovate-sync: false
       test-job: true
     permissions:
