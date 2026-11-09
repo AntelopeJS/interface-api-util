@@ -1,5 +1,31 @@
 # Changelog
 
+## v0.3.1
+
+[compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.3.0...v0.3.1)
+
+### 🚀 Enhancements
+
+- **skills:** Add the verify-interface verification skill ([#54](https://github.com/AntelopeJS/interface-api-util/pull/54))
+
+### 📦 Build
+
+- **deps:** Bump @antelopejs packages to the 2026-11-06 releases ([#51](https://github.com/AntelopeJS/interface-api-util/pull/51))
+- **deps:** Bump @antelopejs/tooling-configs to 0.3.4 ([#52](https://github.com/AntelopeJS/interface-api-util/pull/52))
+
+### 🏡 Chore
+
+- Land the cleanup campaign on main ([#48](https://github.com/AntelopeJS/interface-api-util/pull/48))
+- **ci:** Remove the weekly mutation caller ([#49](https://github.com/AntelopeJS/interface-api-util/pull/49))
+
+### 🤖 CI
+
+- Call ci-node.yml@v1 ([#50](https://github.com/AntelopeJS/interface-api-util/pull/50))
+
+### ❤️ Contributors
+
+- Antony Rizzitelli ([@Upd4ting](http://github.com/Upd4ting))
+
 ## v0.3.0
 
 [compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.2.0...v0.3.0)
