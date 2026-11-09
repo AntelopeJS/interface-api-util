@@ -4,10 +4,16 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@antelopejs/api>@antelopejs/interface-api-util': link:.
+
 importers:
 
   .:
     devDependencies:
+      '@antelopejs/api':
+        specifier: 1.7.1
+        version: 1.7.1(@antelopejs/core@1.21.0)
       '@antelopejs/core':
         specifier: ^1.21.0
         version: 1.21.0
@@ -58,6 +64,14 @@ importers:
         version: 5.9.3
 
 packages:
+
+  '@antelopejs/api@1.7.1':
+    resolution: {integrity: sha512-hNfBUe+yyn5xwlo3mIMjO7YCZ2vAML4p/x7pGcKbR0dLAT6v+b0qqiHvdmViH3LTdJAaXXle9qrykIA6fYnhFw==}
+    peerDependencies:
+      '@antelopejs/core': '>=1.21.0 <2'
+    peerDependenciesMeta:
+      '@antelopejs/core':
+        optional: true
 
   '@antelopejs/core@1.21.0':
     resolution: {integrity: sha512-0+qxASgc1sF8MihvGYfrAy6m3XTPcrFJeeIH69ivI0cvtYmj71cjzTeXdKghBZb4ndTMQ2IXeKbK6zxrG2w4Tw==}
@@ -2405,6 +2419,18 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
+  ws@8.22.1:
+    resolution: {integrity: sha512-oyL6OPYme/CmiFvNuGzeoxCJ4nOrZE2O1FwM9MWM1AsGri6nLXB2pg+lNA8aLeXMSav0J6eIVS1j6vUPzUtK9g==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   wsl-utils@0.1.0:
     resolution: {integrity: sha512-h3Fbisa2nKGPxCpm89Hk33lBLsnaGBvctQopaBSOW/uIs6FTe1ATyAnKFJrzVs9vpGdsTe73WF3V4lIsk4Gacw==}
     engines: {node: '>=18'}
@@ -2461,6 +2487,19 @@ packages:
     resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
 
 snapshots:
+
+  '@antelopejs/api@1.7.1(@antelopejs/core@1.21.0)':
+    dependencies:
+      '@antelopejs/interface-api': 0.2.0(@antelopejs/interface-core@0.4.0)
+      '@antelopejs/interface-api-util': 'link:'
+      '@antelopejs/interface-core': 0.4.0
+      reflect-metadata: 0.2.2
+      ws: 8.22.1
+    optionalDependencies:
+      '@antelopejs/core': 1.21.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@antelopejs/core@1.21.0':
     dependencies:
@@ -4722,6 +4761,8 @@ snapshots:
       strip-ansi: 7.2.0
 
   wrappy@1.0.2: {}
+
+  ws@8.22.1: {}
 
   wsl-utils@0.1.0:
     dependencies:

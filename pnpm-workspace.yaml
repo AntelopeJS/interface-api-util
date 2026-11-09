@@ -1,0 +1,2 @@
+overrides:
+  "@antelopejs/api>@antelopejs/interface-api-util": "link:."
