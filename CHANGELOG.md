@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.3.2
+
+[compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.3.1...v0.3.2)
+
+### 🩹 Fixes
+
+- **rate-limit:** Reject over-limit requests instead of throwing synchronously ([#56](https://github.com/AntelopeJS/interface-api-util/pull/56))
+
+### 📦 Build
+
+- **deps:** Bump @antelopejs/tooling-configs to 0.5.0 ([#55](https://github.com/AntelopeJS/interface-api-util/pull/55))
+
+### ❤️ Contributors
+
+- Antony Rizzitelli ([@Upd4ting](http://github.com/Upd4ting))
+
 ## v0.3.1
 
 [compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.3.0...v0.3.1)
