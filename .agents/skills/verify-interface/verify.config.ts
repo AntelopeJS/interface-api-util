@@ -47,7 +47,7 @@ const CALLS: NonNullable<InterfaceHooks<typeof ApiUtil>["calls"]> = {
   ".:hitWindow": {
     call: async (api) => {
       const store: Parameters<typeof api.hitWindow>[0] = new Map();
-      return { first: api.hitWindow(store, "k", 1, 1000, 0), second: api.hitWindow(store, "k", 1, 1000, 10), later: api.hitWindow(store, "k", 1, 1000, 1000) };
+      return { first: { ...api.hitWindow(store, "k", 1, 1000, 0) }, second: { ...api.hitWindow(store, "k", 1, 1000, 10) }, later: { ...api.hitWindow(store, "k", 1, 1000, 1000) } };
     },
     expect: {
       first: { allowed: true, remaining: 0, resetMs: 1000 },
