@@ -20,7 +20,7 @@ import {
   type RateLimitOptions,
   resolveKey,
 } from "../rate-limit";
-import { captureHTTPResult } from "./capture-http-result";
+import { captureRejectedHTTPResult } from "./capture-http-result";
 
 const TOO_MANY_REQUESTS = 429;
 const LIMIT = 2;
@@ -162,7 +162,7 @@ function describeDecorator(): void {
       assert.ok(meta.computed_params.handler[1]?.provider);
     });
 
-    it("passes while under the limit and throws 429 once exceeded", () => {
+    it("passes while under the limit and rejects with 429 once exceeded", async () => {
       class Limited extends Controller("rate-limit-behavior") {
         @RateLimit(LIMIT, WINDOW_MS)
         handler() {
@@ -175,7 +175,9 @@ function describeDecorator(): void {
       assert.equal(provider(context), undefined);
       assert.equal(provider(context), undefined);
 
-      const error = captureHTTPResult(() => provider(context));
+      const error = await captureRejectedHTTPResult(
+        Promise.resolve(provider(context)),
+      );
       const headers = error.getHeaders();
       const retryAfter = Number(headers[RETRY_AFTER_HEADER]);
       assert.equal(error.getStatus(), TOO_MANY_REQUESTS);

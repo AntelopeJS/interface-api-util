@@ -182,8 +182,10 @@ function nextFreeIndex(meta: ControllerMeta, key: PropertyKey): number {
  * every key within a `windowMs` window. Successful responses carry the
  * `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset`
  * (epoch seconds) headers so clients can self-pace. Once the count exceeds
- * `limit`, the handler instead throws an `HTTPResult` with status `429` (adding
- * a `Retry-After` header) without running, exactly like `assert`. Elapsed
+ * `limit`, the guard rejects with an `HTTPResult` with status `429` (adding a
+ * `Retry-After` header) and the handler does not run. The guard rejects rather
+ * than throwing so that a body read another parameter already started is
+ * still awaited, and its failure is handled with the request. Elapsed
  * windows are pruned periodically, so the store is bounded by the keys seen
  * within a single window (counts are not shared across processes).
  *
@@ -195,7 +197,7 @@ function nextFreeIndex(meta: ControllerMeta, key: PropertyKey): number {
  * @param limit Maximum number of requests allowed per window
  * @param windowMs Window duration in milliseconds
  * @param options Optional custom key function and `429` message
- * @throws {HTTPResult} Status `429` when the limit is exceeded
+ * @throws {HTTPResult} Status `429` when the limit is exceeded, as a rejection
  * @throws {Error} At decoration time if placed above its route decorator
  *
  * Example:
@@ -244,7 +246,9 @@ export const RateLimit = MakeMethodDecorator(
         now,
       );
       if (!decision.allowed) {
-        throw buildLimitResult(limit, decision, now, resolvedOptions);
+        return Promise.reject(
+          buildLimitResult(limit, decision, now, resolvedOptions),
+        );
       }
       if (context.response) {
         applyRateLimitHeaders(context.response, limit, decision, now);

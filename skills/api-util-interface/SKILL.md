@@ -78,8 +78,9 @@ class MembersController extends Controller("members") {
   `errorFunc(err)` (an `HTTPBody`, or `undefined` for an empty body) if provided, otherwise `String(err)`. `Input` is the type of `body`, and the
   validator receives it at that type (a `Buffer` body needs no cast). A validator taking a wider
   type (`schema.parse`) fits; one taking a narrower type than the body is a compile error, unless the body is typed `any`.
-- `RateLimit(limit, windowMs, options?)` — fixed-window counter per key; over-limit requests throw
-  a 429 `HTTPResult` (with `Retry-After`) before the handler runs. Successful responses get
+- `RateLimit(limit, windowMs, options?)` — fixed-window counter per key; over-limit requests are answered
+  with a 429 `HTTPResult` (with `Retry-After`) and the handler does not run. The guard rejects
+  rather than throwing, so a body read another parameter started is still awaited. Successful responses get
   `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` (epoch seconds) headers.
 
 ## Gotchas
