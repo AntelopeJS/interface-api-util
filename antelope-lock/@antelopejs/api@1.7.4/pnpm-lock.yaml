@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@antelopejs/interface-api':
-        specifier: '>=0.2.0 <0.4.0'
-        version: 0.3.2(@antelopejs/interface-core@0.5.1)
+        specifier: '>=0.3.0 <0.4.0'
+        version: 0.3.3(@antelopejs/interface-core@0.5.1)
       '@antelopejs/interface-api-util':
-        specifier: '>=0.3.0 <1.0.0'
-        version: 0.3.2(@antelopejs/interface-api@0.3.2(@antelopejs/interface-core@0.5.1))(@antelopejs/interface-core@0.5.1)
+        specifier: '>=0.3.0 <0.4.0'
+        version: 0.3.2(@antelopejs/interface-api@0.3.3(@antelopejs/interface-core@0.5.1))(@antelopejs/interface-core@0.5.1)
       '@antelopejs/interface-core':
-        specifier: '>=0.4.0 <1.0.0'
+        specifier: '>=0.5.1 <0.6.0'
         version: 0.5.1
       reflect-metadata:
         specifier: ^0.2.2
@@ -25,11 +25,11 @@ importers:
         version: 8.23.0
     devDependencies:
       '@antelopejs/core':
-        specifier: ^1.21.0
-        version: 1.22.0
+        specifier: ~1.23.0
+        version: 1.23.3
       '@antelopejs/tooling-configs':
-        specifier: ^0.4.0
-        version: 0.4.1(eslint-plugin-perfectionist@5.13.0(eslint@10.14.0(jiti@2.7.0))(typescript@5.9.3))(knip@6.45.1)(oxfmt@0.66.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2007))
+        specifier: '>=0.6.0 <0.7.0'
+        version: 0.6.0(eslint-plugin-perfectionist@5.13.0(eslint@10.15.0(jiti@2.7.0))(typescript@5.9.3))(knip@6.45.1)(oxfmt@0.66.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2007))
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -44,7 +44,7 @@ importers:
         version: 8.18.2
       eslint-plugin-perfectionist:
         specifier: ^5.11.0
-        version: 5.13.0(eslint@10.14.0(jiti@2.7.0))(typescript@5.9.3)
+        version: 5.13.0(eslint@10.15.0(jiti@2.7.0))(typescript@5.9.3)
       knip:
         specifier: ^6.34.0
         version: 6.45.1
@@ -78,8 +78,8 @@ importers:
 
 packages:
 
-  '@antelopejs/core@1.22.0':
-    resolution: {integrity: sha512-Fsq2dGO6xZpypD9nrXxhy8WOMnZB8a9Oc+hysH+chG101GFnxUb49aFjc5LhkKOhcW/xQTOa2JBQMIOVLCB3IQ==}
+  '@antelopejs/core@1.23.3':
+    resolution: {integrity: sha512-W9ekdNXaZCuK4lsKn5bBF3F+LoQhvwlmLoprw4m0W6jdS0DA6Bb7B2+2ttgla0oggAJwyFUxHcpBVloFnlv91w==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
@@ -89,16 +89,16 @@ packages:
       '@antelopejs/interface-api': '>=0.3.0 <1.0.0'
       '@antelopejs/interface-core': '>=0.2.4 <1.0.0'
 
-  '@antelopejs/interface-api@0.3.2':
-    resolution: {integrity: sha512-UTow4Rv07zV7gVGEpzYn1OgtIqEFezxU6G2XFl1kDnC2wn+FahPr+LDtdl9QgosyJPKdO1fOMGu8SSn35S/B0A==}
+  '@antelopejs/interface-api@0.3.3':
+    resolution: {integrity: sha512-jcsbhW5sO56ZFGBvHPy8/bmIw9BPS/lxBPF4Pyv3YwY9/VaFXGZVI3N+TjgJAHOwnjW8gRuASfqaTDYaFM/ldQ==}
     peerDependencies:
-      '@antelopejs/interface-core': '>=0.4.0 <1.0.0'
+      '@antelopejs/interface-core': '>=0.5.1 <0.6.0'
 
   '@antelopejs/interface-core@0.5.1':
     resolution: {integrity: sha512-ON/7TYA1yyT8UznzKi6vnwyjRU3byNE0OcFXBmf8dE/dqp8hKjeWHVyA2EUPOngmEimCLw4idZqOS5DJqMJx3g==}
 
-  '@antelopejs/tooling-configs@0.4.1':
-    resolution: {integrity: sha512-W90lA/v2hu5DORyeaSq2jcAghK9Cigb3JQ0eeHM+9udyMf0BD/08OXbtlFJVt2TA1a/MqTbv9BKiYBa58ww1FA==}
+  '@antelopejs/tooling-configs@0.6.0':
+    resolution: {integrity: sha512-DtGbS8grU8KKoB/HcvxKfwQy2AqQh7OUF2it85zf4czzZPodgdsw1/Ajj4onJvOYygqNgcd7D7EdDFtmY7FuDA==}
     engines: {node: '>=22.18.0'}
     hasBin: true
     peerDependencies:
@@ -164,8 +164,8 @@ packages:
     resolution: {integrity: sha512-R76UKbvsqI68DJJVTVyqFKqU98CN4+B+acxNfEA2IFarSzP0SjtKf/3+fFiXzTyv5Fj3PxLkGHe2wnVWWMxobQ==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
-  '@eslint/config-array@0.23.5':
-    resolution: {integrity: sha512-Y3kKLvC1dvTOT+oGlqNQ1XLqK6D1HU2YXPc52NmAlJZbMMWDzGYXMiPRJ8TYD39muD/OTjlZmNJ4ib7dvSrMBA==}
+  '@eslint/config-array@0.23.6':
+    resolution: {integrity: sha512-WrTH7nioI9QPY4NZGnsywmecswJdgeq4BCM76qok9VgjTO29ZgUzUvcuJLVPYVQM4uDbaPBU0M33R9DIxI8X3w==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
   '@eslint/config-helpers@0.7.0':
@@ -990,6 +990,10 @@ packages:
     resolution: {integrity: sha512-NAGrjn0Pitjqzq/GkgMC4kBYm233PQ8GffyQ9+kTA3AlNQYEzOf25EIM02BAHZv5FRJSpHpJk+OGUxVkOB93GQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@typescript/typescript6@6.0.2':
+    resolution: {integrity: sha512-mbCddXd+jm7hfx7w2YU64/Av4/NqqeG3GoRZgxPcgoTxYjhrcfJRw9ULch71SS4G+Q3bOXFhRvPqjguN0Hyp5w==}
+    hasBin: true
+
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1330,8 +1334,8 @@ packages:
     resolution: {integrity: sha512-tD40eHxA35h0PEIZNeIjkHoDR4YjjJp34biM0mDvplBe//mB+IHCqHDGV7pxF+7MklTvighcCPPZC7ynWyjdTA==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  eslint@10.14.0:
-    resolution: {integrity: sha512-T0pNsxkb9IKmtQjhpK3d7nWOpFv+YHuMbTJnSVMoQblF0onvXfErrtp4V1jHtsQPan7dKaGVD0q1WCXnzMF31A==}
+  eslint@10.15.0:
+    resolution: {integrity: sha512-+5Wg4p+ze3sG1WErYgUO/3H1IQIfFBymVUA0Fo/XTeBOLS6UQIUekpSJ8sdRkn7O7wjh84b55w/roqavH2aScg==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
     hasBin: true
     peerDependencies:
@@ -2319,6 +2323,10 @@ packages:
     resolution: {integrity: sha512-1tB5mhVo7U+ETBKNf92xT4hrQa3pm0MZ0PQvuDnWgAAGHDsfp4lPSpiS6psrSiet87wyGPh9ft6wmhOMQ0hDiw==}
     engines: {node: '>=14.16'}
 
+  strip-json-comments@5.1.0:
+    resolution: {integrity: sha512-ErcwpJBYr8EfX/Br7JauOIGXoRE92w0hVtuS9j92UFgbATxA+WRSIZksSUDzEeItfWB/0QCEprTZT55RSINUHQ==}
+    engines: {node: '>=22'}
+
   supports-color@8.1.1:
     resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
     engines: {node: '>=10'}
@@ -2398,6 +2406,11 @@ packages:
 
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -2530,7 +2543,7 @@ packages:
 
 snapshots:
 
-  '@antelopejs/core@1.22.0':
+  '@antelopejs/core@1.23.3':
     dependencies:
       '@antelopejs/interface-core': 0.5.1
       '@clack/prompts': 1.9.0
@@ -2545,12 +2558,12 @@ snapshots:
       semver: 7.8.6
       typescript: 5.9.3
 
-  '@antelopejs/interface-api-util@0.3.2(@antelopejs/interface-api@0.3.2(@antelopejs/interface-core@0.5.1))(@antelopejs/interface-core@0.5.1)':
+  '@antelopejs/interface-api-util@0.3.2(@antelopejs/interface-api@0.3.3(@antelopejs/interface-core@0.5.1))(@antelopejs/interface-core@0.5.1)':
     dependencies:
-      '@antelopejs/interface-api': 0.3.2(@antelopejs/interface-core@0.5.1)
+      '@antelopejs/interface-api': 0.3.3(@antelopejs/interface-core@0.5.1)
       '@antelopejs/interface-core': 0.5.1
 
-  '@antelopejs/interface-api@0.3.2(@antelopejs/interface-core@0.5.1)':
+  '@antelopejs/interface-api@0.3.3(@antelopejs/interface-core@0.5.1)':
     dependencies:
       '@antelopejs/interface-core': 0.5.1
 
@@ -2558,15 +2571,16 @@ snapshots:
     dependencies:
       reflect-metadata: 0.2.2
 
-  '@antelopejs/tooling-configs@0.4.1(eslint-plugin-perfectionist@5.13.0(eslint@10.14.0(jiti@2.7.0))(typescript@5.9.3))(knip@6.45.1)(oxfmt@0.66.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2007))':
+  '@antelopejs/tooling-configs@0.6.0(eslint-plugin-perfectionist@5.13.0(eslint@10.15.0(jiti@2.7.0))(typescript@5.9.3))(knip@6.45.1)(oxfmt@0.66.0)(oxlint@1.81.0(oxlint-tsgolint@7.0.2007))':
     dependencies:
       '@oxlint/plugins': 1.81.0
+      '@typescript/typescript6': 6.0.2
       dts-bundle-generator: 9.5.1
       minimatch: 10.2.6
-      typescript: 5.9.3
+      semver: 7.8.6
       yaml: 2.9.1
     optionalDependencies:
-      eslint-plugin-perfectionist: 5.13.0(eslint@10.14.0(jiti@2.7.0))(typescript@5.9.3)
+      eslint-plugin-perfectionist: 5.13.0(eslint@10.15.0(jiti@2.7.0))(typescript@5.9.3)
       knip: 6.45.1
       oxfmt: 0.66.0
       oxlint: 1.81.0(oxlint-tsgolint@7.0.2007)
@@ -2612,18 +2626,18 @@ snapshots:
       tslib: 2.9.1
     optional: true
 
-  '@eslint-community/eslint-utils@4.10.1(eslint@10.14.0(jiti@2.7.0))':
+  '@eslint-community/eslint-utils@4.10.1(eslint@10.15.0(jiti@2.7.0))':
     dependencies:
-      eslint: 10.14.0(jiti@2.7.0)
+      eslint: 10.15.0(jiti@2.7.0)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.3': {}
 
-  '@eslint/config-array@0.23.5':
+  '@eslint/config-array@0.23.6':
     dependencies:
       '@eslint/object-schema': 3.0.5
       debug: 4.4.3(supports-color@8.1.1)
-      minimatch: 10.2.6
+      minimatch: 11.0.8
     transitivePeerDependencies:
       - supports-color
 
@@ -3228,13 +3242,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.72.2(eslint@10.14.0(jiti@2.7.0))(typescript@5.9.3)':
+  '@typescript-eslint/utils@8.72.2(eslint@10.15.0(jiti@2.7.0))(typescript@5.9.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.14.0(jiti@2.7.0))
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.15.0(jiti@2.7.0))
       '@typescript-eslint/scope-manager': 8.72.2
       '@typescript-eslint/types': 8.72.2
       '@typescript-eslint/typescript-estree': 8.72.2(typescript@5.9.3)
-      eslint: 10.14.0(jiti@2.7.0)
+      eslint: 10.15.0(jiti@2.7.0)
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
@@ -3243,6 +3257,10 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.72.2
       eslint-visitor-keys: 5.0.1
+
+  '@typescript/typescript6@6.0.2':
+    dependencies:
+      '@typescript/old': typescript@6.0.3
 
   acorn-jsx@5.3.2(acorn@8.19.0):
     dependencies:
@@ -3564,13 +3582,13 @@ snapshots:
     optionalDependencies:
       source-map: 0.6.1
 
-  eslint-plugin-perfectionist@5.13.0(eslint@10.14.0(jiti@2.7.0))(typescript@5.9.3):
+  eslint-plugin-perfectionist@5.13.0(eslint@10.15.0(jiti@2.7.0))(typescript@5.9.3):
     dependencies:
       '@typescript-eslint/types': 8.72.2
-      '@typescript-eslint/utils': 8.72.2(eslint@10.14.0(jiti@2.7.0))(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.72.2(eslint@10.15.0(jiti@2.7.0))(typescript@5.9.3)
       natural-orderby: 5.0.0
     optionalDependencies:
-      eslint: 10.14.0(jiti@2.7.0)
+      eslint: 10.15.0(jiti@2.7.0)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -3586,11 +3604,11 @@ snapshots:
 
   eslint-visitor-keys@5.0.1: {}
 
-  eslint@10.14.0(jiti@2.7.0):
+  eslint@10.15.0(jiti@2.7.0):
     dependencies:
-      '@eslint-community/eslint-utils': 4.10.1(eslint@10.14.0(jiti@2.7.0))
+      '@eslint-community/eslint-utils': 4.10.1(eslint@10.15.0(jiti@2.7.0))
       '@eslint-community/regexpp': 4.12.3
-      '@eslint/config-array': 0.23.5
+      '@eslint/config-array': 0.23.6
       '@eslint/config-helpers': 0.7.0
       '@eslint/core': 1.2.1
       '@eslint/plugin-kit': 0.7.3
@@ -3615,7 +3633,7 @@ snapshots:
       imurmurhash: 0.1.4
       is-glob: 4.0.3
       json-stable-stringify-without-jsonify: 1.0.1
-      minimatch: 10.2.6
+      minimatch: 11.0.8
       natural-compare: 1.4.0
       optionator: 0.9.4
     optionalDependencies:
@@ -4151,7 +4169,7 @@ snapshots:
       ms: 2.1.3
       picocolors: 1.1.1
       serialize-javascript: 7.1.4
-      strip-json-comments: 5.0.3
+      strip-json-comments: 5.1.0
       supports-color: 8.1.1
       workerpool: 10.0.3
 
@@ -4704,6 +4722,8 @@ snapshots:
 
   strip-json-comments@5.0.3: {}
 
+  strip-json-comments@5.1.0: {}
+
   supports-color@8.1.1:
     dependencies:
       has-flag: 4.0.0
@@ -4782,6 +4802,8 @@ snapshots:
   type-fest@2.19.0: {}
 
   typescript@5.9.3: {}
+
+  typescript@6.0.3: {}
 
   ufo@1.6.4: {}
 
