@@ -70,13 +70,15 @@ export function assert(
 export function assertValidation<T, Input = unknown>(
   body: Input,
   validator: (body: Input) => T,
-  errorFunc?: (err: unknown) => HTTPBody | undefined,
+  errorFunc?: (err: Error) => HTTPBody | undefined,
   code = 400,
 ): T {
   try {
     return validator(body);
   } catch (e: unknown) {
-    const errObj = errorFunc ? errorFunc(e) : String(e);
+    const errObj = errorFunc
+      ? errorFunc(e instanceof Error ? e : new Error(String(e)))
+      : String(e);
     throw new HTTPResult(code, errObj);
   }
 }
