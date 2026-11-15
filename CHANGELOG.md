@@ -1,5 +1,27 @@
 # Changelog
 
+## v0.3.3
+
+[compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.3.2...v0.3.3)
+
+### 📖 Documentation
+
+- **readme:** Adopt the AntelopeJS framework README style ([#58](https://github.com/AntelopeJS/interface-api-util/pull/58))
+
+### 📦 Build
+
+- **deps:** Bump @antelopejs/tooling-configs to 0.5.1 ([#57](https://github.com/AntelopeJS/interface-api-util/pull/57))
+- **deps:** Move to tooling-configs 0.7.1 and cap @antelopejs ranges below the next minor ([#60](https://github.com/AntelopeJS/interface-api-util/pull/60))
+- Move to @antelopejs/tooling-configs 0.8 and the three-tier CI ([#61](https://github.com/AntelopeJS/interface-api-util/pull/61))
+
+### 🤖 CI
+
+- Run checks and tests on Windows ([#59](https://github.com/AntelopeJS/interface-api-util/pull/59))
+
+### ❤️ Contributors
+
+- Antony Rizzitelli
+
 ## v0.3.2
 
 [compare changes](https://github.com/AntelopeJS/interface-api-util/compare/v0.3.1...v0.3.2)

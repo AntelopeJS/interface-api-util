@@ -1,6 +1,6 @@
 {
   "name": "@antelopejs/interface-api-util",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "AntelopeJS helpers for API handlers: request assertions, input validation and rate limiting",
   "keywords": [
     "antelopejs",
