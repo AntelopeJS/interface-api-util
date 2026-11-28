@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@antelopejs/api": "~1.7.4",
-    "@antelopejs/core": "~1.23.3",
+    "@antelopejs/core": "~1.24.0",
     "@antelopejs/interface-api": ">=0.3.3 <0.4.0",
     "@antelopejs/interface-core": ">=0.5.1 <0.6.0",
     "@antelopejs/tooling-configs": "^0.10.12",
